@@ -1,0 +1,107 @@
+From 512fe2a1d38d69136f4b02a6078f6146fae18187 Mon Sep 17 00:00:00 2001
+From: Khanh-Lam Mai <khanh-lam.mai@bnf.fr>
+Date: Wed, 14 Oct 2015 17:34:20 +0200
+Subject: [PATCH] Adding getter and setter for some classes for extending in
+ bnf-openwayback
+
+---
+ .../replay/DefaultReplayCaptureSelector.java        | 10 +++++++++-
+ .../archive/wayback/replay/TextReplayRenderer.java  | 16 ++++++++++++++++
+ .../org/archive/wayback/webapp/AccessPoint.java     | 21 +++++++++++++++++++--
+ 3 files changed, 44 insertions(+), 3 deletions(-)
+
+diff --git a/wayback-core/src/main/java/org/archive/wayback/replay/DefaultReplayCaptureSelector.java b/wayback-core/src/main/java/org/archive/wayback/replay/DefaultReplayCaptureSelector.java
+index 9e8de301f..1bf07a3cd 100644
+--- a/wayback-core/src/main/java/org/archive/wayback/replay/DefaultReplayCaptureSelector.java
++++ b/wayback-core/src/main/java/org/archive/wayback/replay/DefaultReplayCaptureSelector.java
+@@ -174,4 +174,12 @@ protected CaptureSearchResult findNextClosest() {
+ 			return next;
+ 		}
+ 	}
+-}
+\ No newline at end of file
++
++	public CaptureSearchResult getCurrentClosest() {
++		return currentClosest;
++	}
++
++	public void setCurrentClosest(CaptureSearchResult currentClosest) {
++		this.currentClosest = currentClosest;
++	}
++}
+diff --git a/wayback-core/src/main/java/org/archive/wayback/replay/TextReplayRenderer.java b/wayback-core/src/main/java/org/archive/wayback/replay/TextReplayRenderer.java
+index 616acc257..37add2676 100644
+--- a/wayback-core/src/main/java/org/archive/wayback/replay/TextReplayRenderer.java
++++ b/wayback-core/src/main/java/org/archive/wayback/replay/TextReplayRenderer.java
+@@ -287,4 +287,20 @@ protected CharSequence buildInsertText(TextDocument page,
+ 		}
+ 		return toInsert;
+ 	}
++
++	public ContextResultURIConverterFactory getPageConverterFactory() {
++		return pageConverterFactory;
++	}
++
++	public void setPageConverterFactory(ContextResultURIConverterFactory pageConverterFactory) {
++		this.pageConverterFactory = pageConverterFactory;
++	}
++
++	public HttpHeaderProcessor getHttpHeaderProcessor() {
++		return httpHeaderProcessor;
++	}
++
++	public void setHttpHeaderProcessor(HttpHeaderProcessor httpHeaderProcessor) {
++		this.httpHeaderProcessor = httpHeaderProcessor;
++	}
+ }
+diff --git a/wayback-core/src/main/java/org/archive/wayback/webapp/AccessPoint.java b/wayback-core/src/main/java/org/archive/wayback/webapp/AccessPoint.java
+index af2394c11..01022e7c2 100644
+--- a/wayback-core/src/main/java/org/archive/wayback/webapp/AccessPoint.java
++++ b/wayback-core/src/main/java/org/archive/wayback/webapp/AccessPoint.java
+@@ -195,6 +195,8 @@
+ 
+ 	private boolean fixedEmbeds = false;
+ 
++	private ReplayCaptureSelector captureSelector;
++
+ 	public void init() {
+ 		checkAccessPointAware(collection,exception,query,parser,replay,
+ 			uriConverter,exclusionFactory, authentication, filterFactory);
+@@ -774,7 +776,11 @@ protected void handleReplay(WaybackRequest wbRequest,
+ 			p.queried();
+ 		}
+ 
+-		ReplayCaptureSelector captureSelector = new DefaultReplayCaptureSelector(getReplay());
++		//is captureSelector is not declared in class in wayback.xml
++		if(captureSelector == null) {
++			captureSelector = new DefaultReplayCaptureSelector(getReplay());
++		}
++
+ 		captureSelector.setRequest(wbRequest);
+ 		captureSelector.setCaptures(captureResults);
+ 
+@@ -1084,7 +1090,10 @@ protected CaptureSearchResult retrievePayloadForIdenticalContentRevisit(
+ 
+ 			CaptureSearchResults payloadCaptureResults = searchCaptures(wbr);
+ 			// closest may not be the one pointed by payloadTimestamp
+-			ReplayCaptureSelector captureSelector = new DefaultReplayCaptureSelector(getReplay());
++			//if captureSelector is not declared in class in wayback.xml
++			if(captureSelector == null) {
++				captureSelector = new DefaultReplayCaptureSelector(getReplay());
++			}
+ 			captureSelector.setRequest(wbr);
+ 			captureSelector.setCaptures(payloadCaptureResults);
+ 			payloadLocation = captureSelector.next();
+@@ -1904,4 +1913,12 @@ public void setPerfStatsHeaderFormat(
+ 			PerfStats.OutputFormat perfStatsHeaderFormat) {
+ 		this.perfStatsHeaderFormat = perfStatsHeaderFormat;
+ 	}
++
++	public ReplayCaptureSelector getCaptureSelector() {
++		return captureSelector;
++	}
++
++	public void setCaptureSelector(ReplayCaptureSelector captureSelector) {
++		this.captureSelector = captureSelector;
++	}
+ }

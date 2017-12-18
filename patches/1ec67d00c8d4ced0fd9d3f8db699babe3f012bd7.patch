@@ -1,0 +1,24 @@
+From 1ec67d00c8d4ced0fd9d3f8db699babe3f012bd7 Mon Sep 17 00:00:00 2001
+From: Khanh-Lam Mai <khanh-lam.mai@bnf.fr>
+Date: Mon, 29 Feb 2016 09:59:28 +0100
+Subject: [PATCH] correcting typo
+
+---
+ wayback-webapp/src/main/webapp/WEB-INF/ProxyReplay.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/wayback-webapp/src/main/webapp/WEB-INF/ProxyReplay.xml b/wayback-webapp/src/main/webapp/WEB-INF/ProxyReplay.xml
+index 4e2523e87..fe7b3946c 100644
+--- a/wayback-webapp/src/main/webapp/WEB-INF/ProxyReplay.xml
++++ b/wayback-webapp/src/main/webapp/WEB-INF/ProxyReplay.xml
+@@ -7,8 +7,8 @@
+   <bean id="identityhttpheaderprocessor" class="org.archive.wayback.replay.IdentityHttpHeaderProcessor" />
+ 
+   <!-- use org.archive.wayback.replay.HttpsRedirectRewriteReplayRendeder instead of
+-  org.archive.wayback.replay.TransparentReplayRendeder to force https url rewrite -->
+-  <bean id="proxytransparentreplayrenderer" class="org.archive.wayback.replay.TransparentReplayRendeder">
++  org.archive.wayback.replay.TransparentReplayRenderer to force https url rewrite -->
++  <bean id="proxytransparentreplayrenderer" class="org.archive.wayback.replay.TransparentReplayRenderer">
+     <constructor-arg><ref bean="identityhttpheaderprocessor"/></constructor-arg>
+   </bean>
+   <!-- use org.archive.wayback.proxy.HttpsRedirectAndLinksRewriteProxyHTMLMarkupReplayRenderer instead of
