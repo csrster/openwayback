@@ -110,6 +110,7 @@ public class QueryCaptureFilterGroup implements CaptureFilterGroup {
 		} else if(request.isUrlQueryRequest()) {
 			chain.addFilter(new UrlPrefixMatchFilter(keyUrl));
 			chain.addFilter(new DateRangeFilter(startDate, endDate));
+			chain.addFilter(new SelfRedirectFilter(canonicalizer));
 		}
 
 		
