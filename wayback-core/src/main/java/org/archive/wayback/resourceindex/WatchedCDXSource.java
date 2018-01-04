@@ -217,8 +217,9 @@ public class WatchedCDXSource extends CompositeSearchResultSource {
                                 LOGGER.info("Adding CDX: " + index.getPath());
                                 addSource(index);
                             }
+                            break;
                         }
-                        break;
+                        //break;
                     }
                 }
                 return CONTINUE;
