@@ -7,7 +7,7 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>org.netpreserve.openwayback</groupId>
+	<groupId>dk.netarchivesuite</groupId>
 	<artifactId>openwayback</artifactId>
 	<packaging>pom</packaging>
 	<version>2.4.0-SNAPSHOT</version>
@@ -154,11 +154,23 @@
 	<!-- Hack to ensure we can deploy a multi-module site under a prefix. See
 		https://github.com/github/maven-plugins/issues/22#issuecomment-8421445 -->
 	<distributionManagement>
-		<site>
+		<!--<site>
 			<id>github-pages-site</id>
 			<name>Deployment through GitHub's site deployment plugin</name>
 			<url>http://iipc.github.io/openwayback/${project.version}</url>
-		</site>
+		</site> -->
+		<repository>
+			<id>sbforge-nexus</id>
+			<name>SBForge Nexus Repo manager</name>
+			<url>https://sbforge.org/nexus/content/repositories/releases</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>sbforge-nexus</id>
+			<name>SBForge Nexus Repo manager</name>
+			<url>https://sbforge.org/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+
 	</distributionManagement>
 
 	<build>
