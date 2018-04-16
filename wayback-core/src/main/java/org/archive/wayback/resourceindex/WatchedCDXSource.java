@@ -219,7 +219,6 @@ public class WatchedCDXSource extends CompositeSearchResultSource {
                             }
                             break;
                         }
-                        //break;
                     }
                 }
                 return CONTINUE;
