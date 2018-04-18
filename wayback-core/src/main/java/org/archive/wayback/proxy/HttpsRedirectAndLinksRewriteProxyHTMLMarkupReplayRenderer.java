@@ -54,7 +54,7 @@ public class HttpsRedirectAndLinksRewriteProxyHTMLMarkupReplayRenderer extends P
 	private ResultURIConverter uriConverter;
 	
 	private final static Pattern defaultHttpPattern = Pattern
-		.compile("(https://[A-Za-z0-9:_@.-]+)");
+		.compile("(https:\\?/\\?/[A-Za-z0-9:_@.-]+)");
 	
 	private Pattern pattern = defaultHttpPattern;
 	
