@@ -99,6 +99,11 @@ public class RequestFilter implements Filter {
 		}
 		springConfigPath = context.getRealPath(configPath);
 
+		if (springConfigPath == null) {
+			springConfigPath = context.getRealPath("/") + "/" + configPath;
+		}
+
+
 		String monitorFiles = context.getInitParameter(MONITOR_FILES_CONFIG);
 		if(monitorFiles == null) {
 			// just load once:
