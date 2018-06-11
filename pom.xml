@@ -10,7 +10,7 @@
 	<groupId>dk.netarchivesuite</groupId>
 	<artifactId>openwayback</artifactId>
 	<packaging>pom</packaging>
-	<version>2.4.0-NAS-SNAPSHOT</version>
+	<version>2.4.0-NAS-1.2-SNAPSHOT</version>
 	<name>OpenWayback</name>
 
 	<modules>
@@ -141,8 +141,8 @@
 	</repositories>
 
 	<scm>
-		<connection>scm:git:git@github.com:iipc/openwayback.git</connection>
-		<developerConnection>scm:git:git@github.com:iipc/openwayback.git</developerConnection>
+		<connection>scm:git:git@github.com:netarchivesuite/openwayback-netarchivesuite.git</connection>
+		<developerConnection>scm:git:git@github.com:netarchivesuite/openwayback-netarchivesuite.git</developerConnection>
 		<url>git@github.com:iipc/openwayback.git</url>
 	  <tag>HEAD</tag>
   </scm>
