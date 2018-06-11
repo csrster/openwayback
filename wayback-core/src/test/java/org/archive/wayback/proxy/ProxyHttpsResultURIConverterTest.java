@@ -52,6 +52,7 @@ public class ProxyHttpsResultURIConverterTest extends TestCase {
 		assertEquals("http://" + input, cut.makeReplayURI("20140404102345", input));
 	}
 
+	/**
 	public void testRegex() {
        Pattern experimentalHttpPattern = Pattern
 		.compile("(https:\\?/\\?/[A-Za-z0-9:_@.-]+)");
@@ -69,6 +70,6 @@ public class ProxyHttpsResultURIConverterTest extends TestCase {
 		assert(experimentalHttpPattern.matcher(text2).matches());
 
 	}
-
+	**/
 	
 }
