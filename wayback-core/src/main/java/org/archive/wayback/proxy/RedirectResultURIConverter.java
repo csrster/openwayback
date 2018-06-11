@@ -34,15 +34,18 @@ import org.archive.wayback.WaybackConstants;
 public class RedirectResultURIConverter implements ResultURIConverter {
 	
 	private String redirectURI = null;
+	private String eschttps = "https:\\/\\/:";
 
 	/* (non-Javadoc)
 	 * @see org.archive.wayback.ResultURIConverter#makeReplayURI(java.lang.String, java.lang.String)
 	 */
 	public String makeReplayURI(String datespec, String url) {
 		String res = null;
-		
+
 		if (url.startsWith(WaybackConstants.HTTPS_URL_PREFIX)) {
 			url = WaybackConstants.HTTP_URL_PREFIX + url.substring(WaybackConstants.HTTPS_URL_PREFIX.length());
+		}  else if (url.startsWith(eschttps)) {
+			url = "http:\\/\\/" + url.substring(eschttps.length());
 		} else if(!url.startsWith(WaybackConstants.HTTP_URL_PREFIX)) {
 			url = WaybackConstants.HTTP_URL_PREFIX + url;
 		}

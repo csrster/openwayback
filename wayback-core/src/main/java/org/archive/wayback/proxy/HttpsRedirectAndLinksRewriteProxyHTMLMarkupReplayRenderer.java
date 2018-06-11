@@ -50,11 +50,18 @@ public class HttpsRedirectAndLinksRewriteProxyHTMLMarkupReplayRenderer extends P
 
 	//to rewrite https in URL
 	private String httpRegex;
-	
+
+	/**
+	 * This should probably be hardwired to and instance of
+	 * org.archive.wayback.proxy.ProxyHttpsResultURIConverter
+	 */
 	private ResultURIConverter uriConverter;
 	
+	//private final static Pattern defaultHttpPattern = Pattern
+	//	.compile("(https:\\?/\\?/[A-Za-z0-9:_@.-]+)");
+
 	private final static Pattern defaultHttpPattern = Pattern
-		.compile("(https:\\?/\\?/[A-Za-z0-9:_@.-]+)");
+			.compile("(https://[A-Za-z0-9:_@.-]+)");
 	
 	private Pattern pattern = defaultHttpPattern;
 	
