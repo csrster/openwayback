@@ -225,6 +225,13 @@
 					<version>2.9.1</version>
 					<configuration>
 						<maxmemory>512m</maxmemory>
+						<linksource>true</linksource>
+						<quiet>true</quiet>
+						<additionalOptions>
+							<additionalOption>-Xdoclint:none</additionalOption>
+						</additionalOptions>
+						<failOnError>false</failOnError>
+						<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
 					</configuration>
 				</plugin>
                 <plugin>
